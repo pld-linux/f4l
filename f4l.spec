@@ -8,9 +8,6 @@ Group:		X11/Applications/Publishing
 Source0:	http://dl.sourceforge.net/f4l/%{name}-%{version}.tar.gz
 # Source0-md5:	63e9f24c9eed94d01e721dc9075817ac
 URL:		http://f4l.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,11 +21,6 @@ Program do projektowania i generowania SWF-ów.
 %setup -q
 
 %build
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
-#%{__automake}
 %configure2_13
 %{__make}
 
