@@ -24,12 +24,12 @@ Program do projektowania i generowania SWF-ów.
 %setup -q
 
 %build
-#%%{__libtoolize}
-#%%{__aclocal}
-#%%{__autoconf}
-#%%{__autoheader}
-#%%{__automake}
-%configure
+#%{__libtoolize}
+#%{__aclocal}
+#%{__autoconf}
+#%{__autoheader}
+#%{__automake}
+%configure2_13
 %{__make}
 
 %install
