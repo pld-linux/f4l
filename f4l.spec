@@ -1,12 +1,14 @@
+%define		_src_name	F4L-BETA
 Summary:	SWF designer and generator
 Summary(pl):	Program do projektowania i generowania SWF-ów
 Name:		f4lm
-Version:	0.1
-Release:	2
+Version:	0.2
+Release:	0.beta.1
 License:	GPL
 Group:		X11/Applications/Publishing
-Source0:	http://dl.sourceforge.net/f4l/%{name}-%{version}.tar.gz
-# Source0-md5:	63e9f24c9eed94d01e721dc9075817ac
+#Source0:	http://dl.sourceforge.net/f4l/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/f4l/%{_src_name}-%{version}.tar.bz2
+# Source0-md5:	6eaea1d9863518c663545ccb0cdf958f
 URL:		http://f4l.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	qt-devel
@@ -19,10 +21,12 @@ SWF designer and generator.
 Program do projektowania i generowania SWF-ów.
 
 %prep
-%setup -q
+%setup -q -n %{_src_name}
 
 %build
 cp -f /usr/share/automake/config.sub admin
+rm config.cache
+
 %configure2_13 \
 	--with-qt-libraries=%{_libdir}
 %{__make}
