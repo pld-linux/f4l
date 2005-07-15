@@ -1,17 +1,18 @@
-%define		_src_name	F4L-BETA
 Summary:	SWF designer and generator
 Summary(pl):	Program do projektowania i generowania SWF-ów
-Name:		f4lm
+Name:		f4l
 Version:	0.2
-Release:	0.beta.1
-License:	GPL
+Release:	1
+License:	GPL v2
 Group:		X11/Applications/Publishing
-#Source0:	http://dl.sourceforge.net/f4l/%{name}-%{version}.tar.gz
-Source0:	http://dl.sourceforge.net/f4l/%{_src_name}-%{version}.tar.bz2
-# Source0-md5:	6eaea1d9863518c663545ccb0cdf958f
+Source0:	http://dl.sourceforge.net/f4l/%{name}-%{version}.tar.bz2
+# Source0-md5:	d123d5108b1e434de7d1195d7046a4e9
 URL:		http://f4l.sourceforge.net/
-BuildRequires:	automake
+BuildRequires:	qmake
 BuildRequires:	qt-devel
+BuildRequires:	rpmbuild(macros) >= 1.167
+BuildRequires:	sed >= 4.0
+Obsoletes:	f4lm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -21,26 +22,23 @@ SWF designer and generator.
 Program do projektowania i generowania SWF-ów.
 
 %prep
-%setup -q -n %{_src_name}
+%setup -q
 
 %build
-cp -f /usr/share/automake/config.sub admin
-rm config.cache
-
-%configure2_13 \
-	--with-qt-libraries=%{_libdir}
-%{__make}
+%{__sed} -i 's,mkspecs.*,share/qt/mkspecs/default/qmake.conf,' Makefile
+%{__make} \
+	CXXFLAGS="%{rpmcxxflags} -Wno-deprecated" \
+	QTDIR="%{_prefix}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+install bin/* $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/*
