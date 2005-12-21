@@ -1,12 +1,12 @@
 Summary:	SWF designer and generator
 Summary(pl):	Program do projektowania i generowania SWF-ów
 Name:		f4l
-Version:	0.2
+Version:	0.2.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Publishing
 Source0:	http://dl.sourceforge.net/f4l/%{name}-%{version}.tar.bz2
-# Source0-md5:	d123d5108b1e434de7d1195d7046a4e9
+# Source0-md5:	dcc2ef251814008e753becb933afb266
 URL:		http://f4l.sourceforge.net/
 BuildRequires:	qmake
 BuildRequires:	qt-devel
@@ -25,7 +25,7 @@ Program do projektowania i generowania SWF-ów.
 %setup -q
 
 %build
-%{__sed} -i 's,mkspecs.*,share/qt/mkspecs/default/qmake.conf,' Makefile
+%{__sed} -i 's,/usr/share/qt3,%{_datadir}/qt,' Makefile
 %{__make} \
 	CXXFLAGS="%{rpmcxxflags} -Wno-deprecated" \
 	QTDIR="%{_prefix}"
