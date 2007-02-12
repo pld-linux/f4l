@@ -1,5 +1,5 @@
 Summary:	SWF designer and generator
-Summary(pl):	Program do projektowania i generowania SWF-ów
+Summary(pl.UTF-8):   Program do projektowania i generowania SWF-Ã³w
 Name:		f4l
 Version:	0.2.1
 Release:	1
@@ -18,8 +18,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 SWF designer and generator.
 
-%description -l pl
-Program do projektowania i generowania SWF-ów.
+%description -l pl.UTF-8
+Program do projektowania i generowania SWF-Ã³w.
 
 %prep
 %setup -q
